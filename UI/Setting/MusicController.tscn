@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node
+
+var mainmenu_music = load(\"res://Audio/main menu.mp3\")
+var game_music = load(\"res://Audio/sound in game.mp3\")
+var finish_music = load(\"res://Audio/You Win (Street Fighter) - Sound Effect.wav\")
+var game_over = load(\"res://Audio/Game Over sound effect.wav\")
+var mainmenu_music_playing
+var game_music_playing
+var finish_music_playing
+var game_over_music_playing
+
+func play_mainmenu_music():
+	$Music.stream = mainmenu_music
+	$Music.play()
+	mainmenu_music_playing = true
+	game_music_playing = false
+	finish_music_playing = false
+	game_over_music_playing = false
+#
+func play_game_music():
+	$Music.stream = game_music
+	$Music.play()
+	game_music_playing = true
+	mainmenu_music_playing = false
+	finish_music_playing = false
+	
+func play_finish_music():
+	$Music.stream = finish_music
+	$Music.play()
+	finish_music_playing = true
+	game_music_playing = false
+	mainmenu_music_playing = false
+	
+func play_game_over_music():
+	$Music.stream = game_over
+	$Music.play()
+	game_over_music_playing = true
+	game_music_playing = false
+	mainmenu_music_playing = false
+	
+"
+
+[node name="MusicController" type="Node"]
+script = SubResource( 1 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+bus = "Music"

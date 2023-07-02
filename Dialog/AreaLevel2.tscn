@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Area2D
+
+export var dialog_key = \"\"
+var area_active = false
+
+
+func _input(event):
+	if area_active and event.is_action_pressed(\"health\"):
+		SignalBus.emit_signal(\"display_dialog\", dialog_key)
+		
+func signal_masuk():
+	SignalBus.emit_signal(\"display_dialog\", dialog_key)
+
+func _on_AreaLevel2_body_entered(body):
+	if body.name == \"karakter1\":
+		area_active = true
+		print(body.name)
+		signal_masuk()
+	
+"
+
+[node name="AreaLevel2" type="Area2D"]
+pause_mode = 2
+script = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_AreaLevel2_body_entered"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Portal/Portal.gd" type="Script" id=2]
+[ext_resource path="res://assets/camp/Pintu Tertutup.png" type="Texture" id=3]
+
+[sub_resource type="CapsuleShape2D" id=15]
+radius = 42.4528
+height = 313.24
+
+[node name="Portal" type="Area2D"]
+position = Vector2( 18.0005, 84 )
+scale = Vector2( 0.212, 0.236 )
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="PintuTerbuka" type="Sprite" parent="."]
+position = Vector2( 4.7146, -296.61 )
+scale = Vector2( 0.867924, 0.684323 )
+texture = ExtResource( 3 )
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2( -75.4741, -347.458 )
+shape = SubResource( 15 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_Portal_body_entered"]

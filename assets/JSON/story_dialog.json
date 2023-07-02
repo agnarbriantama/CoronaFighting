@@ -1,0 +1,47 @@
+{
+    "opening": [
+        "Halo sobat, saat ini bumi sedang tidak baik-baik saja.",
+        "Monster-monster Corona sedang meng-invansi bumi saat ini.",
+        "Bantu Micky membasmi monster-monster ini dari bumi.",
+        "Basmi semua monster corona di bumi ini sampai tidak ada yang tersisa",
+        "Untuk bergerak tekan tombol arah kanan dan kiri"
+    ],
+
+    "lompat": [
+        "Tekan tombol sebelah kanan samping tombol peluru untuk melompat",
+        "Kamu bisa melakukan lompatan sebanyak 2 kali"
+    ],
+    "tembak":[
+        "Tekan tombol peluru untuk menembak"
+    ],
+    "finish":[
+        "Selamat kamu telah berhasil membunuh semua monster Corona",
+        "Masuk ke pintu untuk melanjutkan ke level berikutnya"
+    ],
+    "leveldua":[
+        "Kamu telah berhasil sampai ke level 2",
+        "Monster Corona semakin kuat & rintangan semakin susah, mari kita basmi monster Corona"
+    ],
+    "level3":[
+        "Kamu telah berhasil sampai ke level 3 dengan selamat",
+        "Perjuanganmu tinggal sedikit lagi dan monster Corona akan lenyap dari bumi ini"
+    ],
+    "level4":[
+        "Kamu telah sampai di level terakhir",
+        "Sebentar lagi bumi akan terbebas dari monster-monster corona"
+    ],
+    "finish_terakhir":[
+        "Selamat Kamu telah berhasil membasmi semua monster-monster Corona",
+        "Sekarang bumi sudah aman dari invansi monster Corona",
+        "Semoga monster corona tidak muncul lagi di bumi"
+    ],
+    "masker":[
+        "Kenakan item masker untuk menambah darah"
+    ],
+    "vitamin":[
+        "Minum vitamin untuk menambah kecepatan berjalan"
+    ],
+    "vaksin":[
+        "Gunakan vaksin untuk mengembalikan darah menjadi penuh"
+    ]
+}

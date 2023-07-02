@@ -1,0 +1,193 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://assets/Karakter/idle.png" type="Texture" id=1]
+[ext_resource path="res://Karakter/Corona/Corona.gd" type="Script" id=2]
+[ext_resource path="res://assets/Karakter/covid.png" type="Texture" id=3]
+[ext_resource path="res://Karakter/Enemy/Bullet.gd" type="Script" id=4]
+[ext_resource path="res://UI/EnemyBar/EnemyBar.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/Karakter/Dead.png" type="Texture" id=6]
+[ext_resource path="res://assets/font/SHPinscher-Regular.otf" type="DynamicFontData" id=7]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "Dead",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "angry",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 172.192
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 401.333, 36.6667 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "Hit"
+tracks/0/type = "value"
+tracks/0/path = NodePath("covidSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.0156863, 0.0156863, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("LabelHealth:visible_characters")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ -1, 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("LabelHealth:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -33.3333, -393.333 ), Vector2( -33.333, -430 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "coin"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("LabelCoin:visible_characters")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("LabelCoin:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -13.333, -426.667 ), Vector2( -13.333, -470 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 415.833, 36.6667 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 80
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 80
+font_data = ExtResource( 7 )
+
+[node name="Corona" type="KinematicBody2D"]
+scale = Vector2( 0.15, 0.15 )
+collision_layer = 8
+script = ExtResource( 2 )
+
+[node name="covidSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+animation = "walk"
+flip_h = true
+
+[node name="Bullet" type="Position2D" parent="covidSprite"]
+position = Vector2( -73.3333, -26.6667 )
+script = ExtResource( 4 )
+
+[node name="Cooldown" type="Timer" parent="covidSprite/Bullet"]
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="attackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attackArea"]
+modulate = Color( 0.0666667, 0.0117647, 1, 1 )
+position = Vector2( -406, -13 )
+shape = SubResource( 3 )
+
+[node name="TimerAnimation" type="Timer" parent="."]
+one_shot = true
+
+[node name="EnemyHealth" parent="." instance=ExtResource( 5 )]
+margin_left = -126.667
+margin_top = -293.333
+margin_right = 32.3333
+margin_bottom = -256.333
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Hit = SubResource( 4 )
+anims/coin = SubResource( 6 )
+
+[node name="SpawnTimer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 0.287
+one_shot = true
+
+[node name="AreaBlind" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaBlind"]
+position = Vector2( 430, -13.333 )
+shape = SubResource( 5 )
+
+[node name="LabelCoin" type="Label" parent="."]
+margin_left = -13.333
+margin_top = -426.667
+margin_right = 84.667
+margin_bottom = -329.667
+custom_fonts/font = SubResource( 7 )
+text = "+40"
+percent_visible = 0.0
+
+[node name="LabelHealth" type="Label" parent="."]
+margin_left = -33.333
+margin_top = -430.0
+margin_right = 56.667
+margin_bottom = -333.0
+custom_colors/font_color = Color( 0.929412, 0.0392157, 0.0392157, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "-30"
+percent_visible = 0.0
+
+[connection signal="body_entered" from="attackArea" to="." method="_on_attack_kiri_body_entered"]
+[connection signal="body_exited" from="attackArea" to="." method="_on_attackArea_body_exited"]
+[connection signal="body_entered" from="AreaBlind" to="." method="_on_AreaBlind_body_entered"]
+[connection signal="body_exited" from="AreaBlind" to="." method="_on_AreaBlind_body_exited"]
+
+[editable path="EnemyHealth"]

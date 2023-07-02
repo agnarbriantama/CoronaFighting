@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/font/SHPinscher-Regular.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/dialog BG/Dialog BG.png" type="Texture" id=2]
+[ext_resource path="res://Dialog/DialogPlayer.gd" type="Script" id=3]
+[ext_resource path="res://assets/button/Pixel Buttons/Bottom_Right_Idle.png" type="Texture" id=4]
+[ext_resource path="res://assets/button/Pixel Buttons/Bottom_Right_Pushed.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=3]
+size = 45
+font_data = ExtResource( 1 )
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 47.37
+
+[sub_resource type="Animation" id=4]
+resource_name = "show_text"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[node name="DialogPlayer" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 3 )
+
+[node name="Background" type="TextureRect" parent="."]
+margin_left = 138.0
+margin_top = 50.0
+margin_right = 900.0
+margin_bottom = 288.0
+texture = ExtResource( 2 )
+expand = true
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -331.0
+margin_top = 74.0
+margin_right = 353.0
+margin_bottom = 225.0
+custom_colors/font_color = Color( 0.8, 0.74902, 0.74902, 1 )
+custom_fonts/font = SubResource( 3 )
+autowrap = true
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="button" type="TouchScreenButton" parent="."]
+position = Vector2( 811, 205 )
+scale = Vector2( 0.71875, 0.796875 )
+normal = ExtResource( 4 )
+pressed = ExtResource( 5 )
+shape = SubResource( 2 )
+action = "health"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/show_text = SubResource( 4 )
+
+[connection signal="pressed" from="button" to="." method="_on_button_pressed"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/masker-collect.mp3-cb936f68b34cb38ca66514416d45445b.mp3str"
+
+[deps]
+
+source_file="res://Audio/masker-collect.mp3"
+dest_files=[ "res://.import/masker-collect.mp3-cb936f68b34cb38ca66514416d45445b.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
