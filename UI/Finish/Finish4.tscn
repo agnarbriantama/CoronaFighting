@@ -140,12 +140,12 @@ custom_fonts/font = SubResource( 3 )
 text = "High Score : 1000"
 
 [node name="total_score" type="Label" parent="."]
-margin_left = 329.0
-margin_top = 266.0
-margin_right = 635.0
-margin_bottom = 326.0
+margin_left = 319.0
+margin_top = 262.0
+margin_right = 650.0
+margin_bottom = 322.0
 custom_fonts/font = SubResource( 3 )
-text = "Total All Score : 1000"
+text = "Total HighScore : 1000"
 
 [node name="mainmenu" type="Button" parent="."]
 margin_left = 430.0

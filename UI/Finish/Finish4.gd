@@ -11,7 +11,7 @@ func _ready():
 	Autoload.load_level4() 
 	$highscore.text = "High Score : " + str(Autoload.highscore_level4)
 	$AnimationPlayer.play("win")
-	$total_score.text = "Total All Score : " + str(Autoload.highscore_level1 + Autoload.highscore_level2 + Autoload.highscore_level3 + Autoload.highscore_level4)
+	$total_score.text = "Total HighScore : " + str(Autoload.highscore_level1 + Autoload.highscore_level2 + Autoload.highscore_level3 + Autoload.highscore_level4)
 	
 	if Autoload.point4 > Autoload.highscore_level4:
 		Autoload.highscore_level4 = Autoload.point4
